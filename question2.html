@@ -7,14 +7,11 @@
         var app = angular.module("App",[]); //module
         app.controller("control",function($scope){
             $scope.items = [];
-            $scope.price = [];
             $scope.addItem = function(){
-                $scope.items.push($scope.itemname);
-                $scope.price.push($scope.itemprice);
+                $scope.items.push({"N":$scope.itemname , "P":$scope.itemprice});
             };
             $scope.remove=function($index){
                 $scope.items.splice($index,1);
-                $scope.price.splice($index,1);
             };
         });
     </script>
@@ -33,10 +30,10 @@
             <th>Price</th>
             <th>Remove</th>
         </tr>
-        <tr ng-repeat="x in items" ng-repeat="y in price" class="table w-100 mx-auto mt-5 table-bordered table-hover text-center">
+        <tr ng-repeat="x in items" class="table w-100 mx-auto mt-5 table-bordered table-hover text-center">
             <td>{{$index + 1}}</td>
-            <td>{{x}}</td>
-            <td>{{y}}</td>
+            <td>{{x.N}}</td>
+            <td>{{x.P}}</td>
             <td><button ng-click="remove($index)" style="color:red;">[delete]</button></td>
         </tr>
     </table>
